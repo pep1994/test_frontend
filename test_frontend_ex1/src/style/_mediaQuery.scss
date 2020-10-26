@@ -1,0 +1,49 @@
+@media screen and (max-width: 991px) {
+    #about {
+        .post {
+            .caption {
+                margin-top: 48px;
+
+                &:before {
+                    transform: rotate(45deg) translateX(-50%);
+                    top: 0;
+                    left: 48%;
+                }
+            }
+        }
+    }
+}
+
+
+@media screen and (min-width: 992px) {
+    #about {
+        .caption {
+            margin-left: 40px;
+        }
+    }
+}
+
+@media screen and (max-width: 576px) {
+    #about {
+        .description {
+            p {
+                font-size: 22px;
+            }
+        }
+        .title {
+
+            h4 {
+                font-size: 35px;
+            }
+        }
+        .sub-title {
+
+            h3 {
+                font-size: 40px;
+            }
+        }
+        .line {
+            width: 20%;
+        }
+    }
+}

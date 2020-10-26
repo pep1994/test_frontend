@@ -1,0 +1,15 @@
+$white: #fff;
+$black: #000;
+
+@mixin position-absolute($top, $left) {
+    position: absolute;
+    top: $top;
+    left: $left;
+}
+
+@mixin background-image($url) {
+    background-image: url($url);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
