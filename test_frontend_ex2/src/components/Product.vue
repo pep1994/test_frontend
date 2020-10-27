@@ -81,5 +81,6 @@ export default {
         top: 75px;
         right: 15px;
         width: 180px;
+        z-index: 10;
     }
 </style>
