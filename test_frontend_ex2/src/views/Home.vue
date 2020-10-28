@@ -2,6 +2,12 @@
 <div class="home mt-5">
     <div class="container">
 
+        <PromoMessage :showMessage="showPromo"></PromoMessage>
+
+        <div class="title text-center text-dark">
+            <h1>I miglior prodotti al miglior prezzo</h1>
+        </div>
+
         <div v-if="error" class="alert alert-danger text-danger text-center">
             Errore, riprovare più tardi
         </div>
@@ -19,19 +25,37 @@
 import axios from "axios";
 import Product from "@/components/Product.vue";
 import Loading from "@/components/Loading.vue";
+import PromoMessage from "@/components/PromoMessage.vue";
 
 export default {
     name: "Home",
     components: {
         Product,
-        Loading
+        Loading,
+        PromoMessage
     },
     data() {
         return {
             products: [],
             error: false,
             loading: false,
+            showPromo: false,
+            promoStyle: {
+                position: "fixed",
+                top: "-50px",
+                left: 0,
+                zIndex: "-10",
+                opacity: 0,
+                transition: "all 0.7s linear"
+            }
         };
+    },
+    methods: {
+        showPromoStart() {
+            setTimeout(() => {
+                this.showPromo = true;
+            }, 2500);
+        }
     },
     created: function () {
         if (!this.$store.state.products.length > 0) {
@@ -49,6 +73,7 @@ export default {
                     this.products = this.$store.state.products;
                     this.loading = false;
                     this.error = false;
+                    this.showPromoStart();
                 })
                 .catch((err) => {
                     console.log(err);

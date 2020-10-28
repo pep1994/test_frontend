@@ -1,7 +1,7 @@
 <template>
 <div class="cart mt-5">
 
-    <Modal @resetPriceAndCart="reset" :showModal="showModal" :style="styleModal"></Modal>
+    <Modal @resetPriceAndCart="reset" :showModal="showModal" :styleModal="styleModal"></Modal>
     <TableCart :cart="cart" :totalSumCart="totalSumCart" @resetPrice="totalPrice = $event" @setCart="cart = $event"></TableCart>
 
     <div v-if="cart.length > 0" class="d-flex justify-content-center">
