@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: sans-serif;
+  font-family: "EB Garamond", sans-serif;
 }
 
 #about {
@@ -37,12 +37,12 @@
   font-size: 27px;
   font-family: "Great Vibes", cursive;
 }
-#about .sub-title {
+#about .subtitle {
   color: #fff;
   position: relative;
 }
-#about .sub-title h3 {
-  font-size: 30px;
+#about .subtitle h3 {
+  font-size: 33px;
   font-family: "Sansita Swashed", cursive;
 }
 #about .line {
@@ -56,7 +56,7 @@
   transform: translateX(-50%);
 }
 #about .description p {
-  font-size: 18px;
+  font-size: 20px;
   color: #fff;
 }
 #about .post #photo-profile {
@@ -70,6 +70,7 @@
   border-radius: 100%;
 }
 #about .post .caption {
+  width: 100%;
   background-color: #fff;
   padding: 50px 21px 21px 21px;
   position: relative;
@@ -90,17 +91,20 @@
   left: -48px;
   z-index: -1;
 }
-#about .post .caption h4 {
-  margin-bottom: 18px;
-  font-weight: bold;
+#about .post .caption h4, #about .post .caption h5 {
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.8);
 }
 #about .post .caption h5 {
   margin-bottom: 13px;
-  font-weight: bold;
+}
+#about .post .caption h4 {
+  margin-bottom: 18px;
 }
 #about .post .caption p, #about .post .caption h6 {
   color: #B3B7BB;
-  font-weight: bold;
+  font-weight: 600;
+  font-size: 17px;
 }
 
 @media screen and (max-width: 991px) {
@@ -115,7 +119,13 @@
 }
 @media screen and (min-width: 992px) {
   #about .caption {
-    margin-left: 40px;
+    margin-left: 15px;
+  }
+}
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+  #about .post #photo-profile {
+    width: 275px;
+    height: 275px;
   }
 }
 @media screen and (max-width: 576px) {

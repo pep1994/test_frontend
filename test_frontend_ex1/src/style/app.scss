@@ -27,12 +27,12 @@
             font-family: 'Great Vibes', cursive;
         }
     }
-    .sub-title {
+    .subtitle {
         color: $white;
         position: relative;
 
         h3 {
-            font-size: 30px;
+            font-size: 33px;
             font-family: 'Sansita Swashed', cursive;
         }
     }
@@ -46,7 +46,7 @@
     }
     .description {
         p {
-            font-size: 18px;
+            font-size: 20px;
             color: $white;
         }
     }
@@ -59,6 +59,7 @@
             border-radius: 100%;
         }
         .caption {
+            width: 100%;
             background-color: $white;
             padding: 50px 21px 21px 21px;
             position: relative;
@@ -78,17 +79,20 @@
                 z-index: -1;
 
             }
-            h4 {
-                margin-bottom: 18px;
-                font-weight: bold;
+            h4, h5 {
+                font-weight: 600;
+                color: rgba(0, 0, 0, .8);
             }
             h5 {
                 margin-bottom: 13px;
-                font-weight: bold;
+            }
+            h4 {
+                margin-bottom: 18px;
             }
             p, h6 {
                 color: #B3B7BB;
-                font-weight: bold;
+                font-weight: 600;
+                font-size: 17px;
             }
 
         }

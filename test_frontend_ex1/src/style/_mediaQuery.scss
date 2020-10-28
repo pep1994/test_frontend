@@ -18,7 +18,19 @@
 @media screen and (min-width: 992px) {
     #about {
         .caption {
-            margin-left: 40px;
+            margin-left: 15px;
+        }
+    }
+}
+
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    #about {
+        .post {
+
+            #photo-profile {
+                width: 275px;
+                height: 275px;
+            }
         }
     }
 }

@@ -1,37 +1,44 @@
 <template>
-    <div id="add-cart" class="row justify-content-center">
-        <div id="message-cart" v-show="show" class="alert alert-success text-success" role="alert">
-            {{ showNameProduct }}
-        </div>
-        <div v-for="product in products" :key="product.id" class="col-md-4 mt-4 mb-2">
-            <div  class="card" style="width: 18rem;">
-                <img class="card-img-top" :src="product.image" :alt="product.name">
-                <div class="card-body">
-                    <h5 class="card-title">{{product.name}}</h5>
-                    <p class="card-text">€ {{ product.price }}</p>
-                    <button v-if="product.promo_buy_one_get_one_free" @click="addToCartPromo(product.id)" class="btn btn-warning mt-2">Paghi uno, prendi due</button>
-                    <button v-else @click="addToCart(product.id)" class="btn btn-primary">Aggiungi al carrello</button>
-                </div>
+<div id="add-cart" class="row justify-content-center">
+
+    <div id="message-cart" v-show="show" class="alert alert-success text-success" role="alert">
+        {{ showNameProduct }}
+    </div>
+
+    <div v-for="product in products" :key="product.id" class="col-md-4 mt-4 mb-2">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top" :src="product.image" :alt="product.name">
+            <div class="card-body">
+                <h5 class="card-title">{{product.name}}</h5>
+                <p class="card-text">€ {{ product.price }}</p>
+                <span v-if="product.promo_buy_one_get_one_free" class="promo">
+                    <i class="fas fa-certificate"></i>
+                </span>
+                <span v-if="product.promo_buy_one_get_one_free" class="x2 text-danger">x2</span>
+                <button v-if="product.promo_buy_one_get_one_free" @click="addToCartPromo(product.id)" class="btn btn-warning mt-2">Aggiungi al carrello</button>
+                <button v-else @click="addToCart(product.id)" class="btn btn-primary mt-2">Aggiungi al carrello</button>
             </div>
         </div>
     </div>
+
+</div>
 </template>
 
 <script>
 export default {
     name: 'Product',
     data() {
-      return {
-          show: false,
-          nameProduct: "",
-          timeOut: ""
-      }
+        return {
+            show: false,
+            nameProduct: "",
+            timeOut: ""
+        }
     },
     props: {
         'products': {
             type: Array,
             required: true,
-            default: function() {
+            default: function () {
                 return [];
             }
         }
@@ -75,12 +82,30 @@ export default {
 }
 </script>
 
-<style scoped>
-    #message-cart {
-        position: fixed;
-        top: 75px;
-        right: 15px;
-        width: 180px;
-        z-index: 10;
+<style lang="scss" scoped>
+#message-cart {
+    position: fixed;
+    top: 75px;
+    right: 15px;
+    width: 180px;
+    z-index: 10;
+}
+.card {
+    position: relative;
+
+    .promo {
+        color: #fdcf49;
+        font-size: 45px;
+        position: absolute;
+        top: -22px;
+        right: -16px;
     }
+    .x2 {
+        position: absolute;
+        top: -6px;
+        right: -5px;
+        z-index: 10;
+        font-size: 20px;
+    }
+}
 </style>
