@@ -61,7 +61,7 @@ export default {
             this.show = true;
             let product = this.products.find(product => product.id == id);
             if (product) {
-                this.nameProduct = `${product.name} aggiunto al carrello`;
+                this.nameProduct = `${product.name} x2 aggiunti al carrello`;
                 product.quantityInCart += 2;
                 this.$store.commit('addToCartPromo', product);
                 this.$store.commit('setCountCart');
