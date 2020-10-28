@@ -5,7 +5,7 @@
         {{ showNameProduct }}
     </div>
 
-    <div v-for="product in products" :key="product.id" class="col-md-4 mt-4 mb-2">
+    <div v-for="product in products" :key="product.id" class="col-lg-4 col-md-6 mt-4 mb-2 d-flex justify-content-center">
         <div class="card" style="width: 18rem;">
             <img class="card-img-top" :src="product.image" :alt="product.name">
             <div class="card-body">
@@ -88,7 +88,7 @@ export default {
     top: 75px;
     right: 15px;
     width: 180px;
-    z-index: 10;
+    z-index: 11;
 }
 .card {
     position: relative;

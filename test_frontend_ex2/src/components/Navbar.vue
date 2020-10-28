@@ -31,19 +31,35 @@ export default {
 
 <style lang="scss" scoped>
 .link-cart {
-    position: relative;
+    i {
+        position: relative;
+    }
 
     .count-cart {
         position: absolute;
-        top: -10px;
-        right: -12px;
+        top: 4px;
+        right: 8px;
         width: 22px;
         height: 22px;
         border-radius: 100%;
     }
 }
+.nav-item {
+    text-align: end;
+}
 
 i {
     font-size: 20px;
+}
+
+@media screen and (max-width: 991px) {
+
+    .link-cart {
+        padding: 12px;
+        .count-cart {
+            top: 78px;
+            right: 21px;
+        }
+    }
 }
 </style>
