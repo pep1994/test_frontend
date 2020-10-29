@@ -14,17 +14,19 @@
 
         <Loading :showLoading="loading"></Loading>
 
+        <Pagination :loading="loading" :totalPages="totalPages" :currentPage="currentPage" :paginate="paginate" :activeClass="activeClass">
+        </Pagination>
+
     </div>
 </div>
 </template>
 
 <script>
-// @ is an alias to /src
-// import axios from "axios";
 import Product from "@/components/Product.vue";
 import Loading from "@/components/Loading.vue";
 import PromoMessage from "@/components/PromoMessage.vue";
 import ErrorAlert from '@/components/ErrorAlert.vue'
+import Pagination from '@/components/Pagination.vue'
 
 export default {
     name: "Home",
@@ -32,7 +34,8 @@ export default {
         Product,
         Loading,
         PromoMessage,
-        ErrorAlert
+        ErrorAlert,
+        Pagination
     },
     data() {
         return {
@@ -41,6 +44,9 @@ export default {
             loading: false,
             showPromo: false,
             errorMessage: "",
+            totalPages: "",
+            currentPage: "",
+            limit: 6,
             promoStyle: {
                 position: "fixed",
                 top: "-50px",
@@ -56,19 +62,28 @@ export default {
             setTimeout(() => {
                 this.showPromo = true;
             }, 2500);
+        },
+        paginate(page) {
+            let pageNumber = page ? page : 1;
+            let offset = (pageNumber - 1) * this.limit;
+            this.products = this.$store.state.products.slice(offset, (pageNumber * this.limit));
+            this.totalPages = Math.ceil(this.$store.state.products.length / this.limit);
+            this.currentPage = pageNumber;
+        },
+        activeClass(n) {
+            return n == this.currentPage;
         }
     },
     computed: {
-      printErrorMessage() {
-          return this.errorMessage;
-      }
+        printErrorMessage() {
+            return this.errorMessage;
+        }
     },
     created: function () {
         if (!this.$store.state.products.length > 0) {
             this.loading = true;
-
             this.$store.dispatch('fetchProducts').then(() => {
-                    this.products = this.$store.state.products;
+                    this.paginate();
                     this.loading = false;
                     this.error = false;
                     this.showPromoStart();
@@ -80,8 +95,18 @@ export default {
                 })
 
         } else {
-            this.products = this.$store.state.products;
+            this.paginate();
         }
     }
 };
 </script>
+
+<style lang="scss" scoped>
+a.last::before {
+    content: "...";
+}
+
+a.first::after {
+    content: "...";
+}
+</style>
