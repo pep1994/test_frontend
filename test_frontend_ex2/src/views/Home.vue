@@ -14,7 +14,7 @@
 
         <Product v-if="!error || !loading" :products="products"></Product>
 
-        <Loading :show="loading"></Loading>
+        <Loading :showLoading="loading"></Loading>
 
     </div>
 </div>
@@ -63,6 +63,7 @@ export default {
             axios
                 .get("https://5c3c998d29429300143fe514.mockapi.io/api/v1/products")
                 .then((res) => {
+                    console.log(this.loading)
                     this.$store.dispatch(
                         "setProducts",
                         res.data.map((product) => ({
@@ -74,6 +75,7 @@ export default {
                     this.loading = false;
                     this.error = false;
                     this.showPromoStart();
+                    console.log(this.loading)
                 })
                 .catch((err) => {
                     console.log(err);

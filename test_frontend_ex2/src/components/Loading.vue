@@ -1,5 +1,5 @@
 <template>
-<div  class="animate-container d-flex justify-content-center align-items-center">
+<div v-if="showLoading" class="animate-container d-flex justify-content-center align-items-center">
     <div>
         <span></span>
         <span></span>
@@ -13,7 +13,7 @@
 export default {
     name: 'Loading',
     props: {
-        'show': {
+        showLoading: {
             type: Boolean,
             required: true,
             default: function () {

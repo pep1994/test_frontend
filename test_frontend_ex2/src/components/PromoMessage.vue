@@ -47,7 +47,6 @@ export default {
     },
     watch: {
         showMessage: function (val) {
-            console.log(val)
             this.promoStyle.top = val ? '27px' : '-50px';
             this.promoStyle.zIndex = val ? 15 : '-10';
             this.promoStyle.opacity = val ? 1 : 0;

@@ -1,9 +1,7 @@
 <template>
 <div id="add-cart" class="row justify-content-center">
 
-    <div id="message-cart" v-show="show" class="alert alert-success text-success" role="alert">
-        {{ showNameProduct }}
-    </div>
+    <MessageAddToCart :show="show" :nameProduct="showNameProduct"></MessageAddToCart>
 
     <div v-for="product in products" :key="product.id" class="col-lg-4 col-md-6 mt-4 mb-2 d-flex justify-content-center">
         <div class="card" style="width: 18rem;">
@@ -15,8 +13,12 @@
                     <i class="fas fa-certificate"></i>
                 </span>
                 <span v-if="product.promo_buy_one_get_one_free" class="x2 text-danger">x2</span>
-                <button v-if="product.promo_buy_one_get_one_free" @click="addToCartPromo(product.id)" class="btn btn-warning mt-2">Aggiungi al carrello</button>
-                <button v-else @click="addToCart(product.id)" class="btn btn-primary mt-2">Aggiungi al carrello</button>
+                <div class="d-flex justify-content-between">
+                    <button v-if="product.promo_buy_one_get_one_free" @click="addToCartPromo(product.id)" class="btn btn-warning mt-2">Aggiungi al carrello</button>
+                    <button v-else @click="addToCart(product.id)" class="btn btn-primary mt-2">Aggiungi al carrello</button>
+                    <router-link :to="{name: 'Detail', params: {id: product.id}}" tag="button" class="btn btn-info btn-sm">Dettagli</router-link>
+                </div>
+
             </div>
         </div>
     </div>
@@ -25,8 +27,13 @@
 </template>
 
 <script>
+import MessageAddToCart from '@/components/MessageAddToCart.vue';
+
 export default {
     name: 'Product',
+    components: {
+        MessageAddToCart
+    },
     data() {
         return {
             show: false,
@@ -83,13 +90,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#message-cart {
-    position: fixed;
-    top: 75px;
-    right: 15px;
-    width: 180px;
-    z-index: 11;
-}
 .card {
     position: relative;
 
@@ -100,6 +100,7 @@ export default {
         top: -22px;
         right: -16px;
     }
+
     .x2 {
         position: absolute;
         top: -6px;

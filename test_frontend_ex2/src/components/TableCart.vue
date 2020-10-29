@@ -34,10 +34,10 @@
             </td>
             <td>
                 <span v-if="!product.promo_buy_one_get_one_free">-</span>
-                <span v-else>
+                <div v-else>
                     <i class="fas fa-star"></i>
                     <h6>Due prodotti al prezzo di uno</h6>
-                </span>
+                </div>
             </td>
             <td>€ {{ sumPrice(product) }}</td>
             <td>
