@@ -11,9 +11,7 @@
     </div>
 
     <template v-else>
-        <div class="alert alert-danger text-danger text-center">
-            Il carrello è vuoto
-        </div>
+        <ErrorAlert :errorMessage="'Carrelo vuoto'"></ErrorAlert>
         <router-link to="/" class="btn btn-lg btn-warning text-info">Inizia lo shopping</router-link>
     </template>
 
@@ -23,11 +21,13 @@
 <script>
 import Modal from "@/components/Modal.vue";
 import TableCart from "@/components/TableCart.vue";
+import ErrorAlert from '@/components/ErrorAlert.vue'
 
 export default {
     components: {
         Modal,
         TableCart,
+        ErrorAlert
     },
     data() {
         return {

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import axios from 'axios'
 
 Vue.use(Vuex)
 
@@ -60,10 +61,21 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    setProducts: (context, payload) => {
-      context.commit('setProducts', payload);
+    fetchProducts: (context) => {
+      return axios.get("https://5c3c998d29429300143fe514.mockapi.io/api/v1/products")
+            .then(res => {
+                context.commit(
+                    "setProducts",
+                    res.data.map((product) => ({
+                        ...product,
+                        quantityInCart: 0
+                    }))
+                );
+            })
+            .catch((err) => {
+              console.log(err)
+              throw new Error('Errore di connessione, riprovare più tardi');
+            });
     }
-  },
-  modules: {
   }
 })

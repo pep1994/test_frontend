@@ -1,21 +1,27 @@
 <template>
-<ProductDetail :product="product"></ProductDetail>
+<div>
+    <ErrorAlert v-if="error" :errorMessage="printErrorMessage"></ErrorAlert>
+    <ProductDetail v-else :product="product"></ProductDetail>
+</div>
 </template>
 
 <script>
 import ProductDetail from '@/components/ProductDetail.vue';
-import axios from 'axios'
+import ErrorAlert from '@/components/ErrorAlert.vue'
 
 export default {
     name: 'Detail',
     components: {
-        ProductDetail
+        ProductDetail,
+        ErrorAlert
     },
     data() {
         return {
             id: this.id = this.$route.params.id,
             products: [],
-            product: {}
+            product: {},
+            error: false,
+            errorMessage: ""
         }
     },
     watch: {
@@ -27,31 +33,27 @@ export default {
             }
         }
     },
+    computed: {
+        printErrorMessage() {
+            return this.errorMessage;
+        }
+    },
     created: function () {
         console.log('created')
         if (!this.$store.state.products.length > 0) {
-            axios
-                .get("https://5c3c998d29429300143fe514.mockapi.io/api/v1/products")
-                .then((res) => {
-                    let products = res.data.map((product) => ({
-                        ...product,
-                        quantityInCart: 0
-                    }));
-                    this.$store.dispatch(
-                        "setProducts",
-                        products
-                    );
-                    this.products = products;
+            this.$store.dispatch('fetchProducts').then(() => {
+                    this.error = false;
+                    this.products = this.$store.state.products;
                     this.product = this.products.find(product => product.id == this.id);
                 })
-                .catch((err) => {
-                    console.log(err);
-                });
+                .catch(err => {
+                    this.error = true;
+                    this.errorMessage = err;
+                })
         } else {
             this.products = this.$store.state.products;
             this.product = this.products.find(product => product.id == this.id);
         }
-
     }
 }
 </script>
