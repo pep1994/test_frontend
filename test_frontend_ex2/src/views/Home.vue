@@ -75,7 +75,6 @@ export default {
                     this.loading = false;
                     this.error = false;
                     this.showPromoStart();
-                    console.log(this.loading)
                 })
                 .catch((err) => {
                     console.log(err);
@@ -84,6 +83,6 @@ export default {
         } else {
             this.products = this.$store.state.products;
         }
-    },
+    }
 };
 </script>

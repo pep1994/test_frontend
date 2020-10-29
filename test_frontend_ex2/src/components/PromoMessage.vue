@@ -10,7 +10,7 @@
                         <span class="x2 text-danger">x2</span>
                     </span>
                 </h5>
-                <button @click="showMessage = !showMessage" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button @click="show = !show" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -27,6 +27,7 @@ export default {
     name: 'PromoMessage',
     data() {
         return {
+            show: false,
             promoStyle: {
                 position: "fixed",
                 top: "-50px",
@@ -47,6 +48,9 @@ export default {
     },
     watch: {
         showMessage: function (val) {
+            this.show = val;
+        },
+        show: function(val) {
             this.promoStyle.top = val ? '27px' : '-50px';
             this.promoStyle.zIndex = val ? 15 : '-10';
             this.promoStyle.opacity = val ? 1 : 0;

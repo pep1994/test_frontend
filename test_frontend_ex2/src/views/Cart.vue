@@ -48,7 +48,6 @@ export default {
     methods: {
         getCart() {
             this.cart = this.$store.state.cart;
-            console.log(this.cart);
         },
         showModal() {
             this.show = !this.show;

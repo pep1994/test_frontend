@@ -42,8 +42,8 @@ export default {
     props: {
         product: {
             type: Object,
-            default: function () {
-                return "";
+            default: function() {
+                return {};
             }
         }
     },

@@ -17,7 +17,6 @@ export default new Vuex.Store({
       if (state.cart.some(product => product.id == payload.id)) {
         let product = state.cart.find(product => product.id == payload.id);
         product.quantityInCart = payload.quantityInCart;
-        console.log(state.products)
       } else {
         state.cart = [...state.cart, payload];
 
