@@ -8,7 +8,17 @@ export default new Vuex.Store({
   state: {
     products: [],
     cart: [],
-    countCart: ""
+    countCart: "",
+    themeLight: true,
+    light: {
+      syntax: '#555',
+      bg: '#eee'
+
+    },
+    dark: {
+      syntax: '#ddd',
+      bg: '#555'
+    }
   },
   mutations: {
     setProducts: (state, payload) => {
@@ -58,6 +68,9 @@ export default new Vuex.Store({
           product.quantityInCart = 0;
         }
       });
+    },
+    toggleTheme: state => {
+      state.themeLight = !state.themeLight;
     }
   },
   actions: {

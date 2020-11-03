@@ -1,11 +1,11 @@
 <template>
-<div class="home mt-5">
+<div class="home pt-5" :style="{backgroundColor: returnTheme.bg}">
     <div class="container">
 
         <PromoMessage :showMessage="showPromo"></PromoMessage>
 
         <div class="title text-center text-dark">
-            <h1>I miglior prodotti al miglior prezzo</h1>
+            <h1 :style="{color: returnTheme.syntax}">I miglior prodotti al miglior prezzo</h1>
         </div>
 
         <ErrorAlert v-if="error" :errorMessage="printErrorMessage"></ErrorAlert>
@@ -44,8 +44,8 @@ export default {
             loading: false,
             showPromo: false,
             errorMessage: "",
-            totalPages: "",
-            currentPage: "",
+            totalPages: 0,
+            currentPage: 0,
             limit: 6,
             promoStyle: {
                 position: "fixed",
@@ -77,6 +77,10 @@ export default {
     computed: {
         printErrorMessage() {
             return this.errorMessage;
+        },
+        returnTheme() {
+            let theme = this.$store.state.themeLight ? this.$store.state.light : this.$store.state.dark;
+            return theme;
         }
     },
     created: function () {

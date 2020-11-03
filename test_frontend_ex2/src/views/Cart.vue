@@ -1,8 +1,9 @@
 <template>
-<div class="cart mt-5">
+<div class="cart py-5" :style="{backgroundColor: returnTheme.bg, color: returnTheme.syntax, minHeight: '100vh'}">
 
+    <h2 class="mb-5">Riepilogo carrello</h2>
     <Modal @resetPriceAndCart="reset" :showModal="showModal" :styleModal="styleModal"></Modal>
-    <TableCart :cart="cart" :totalSumCart="totalSumCart" @resetPrice="totalPrice = $event" @setCart="cart = $event"></TableCart>
+    <TableCart class="mb-5" :cart="cart" :totalSumCart="totalSumCart" @resetPrice="totalPrice = $event" @setCart="cart = $event"></TableCart>
 
     <div v-if="cart.length > 0" class="d-flex justify-content-center">
         <button @click="showModal" class="btn btn-lg btn-danger">
@@ -11,8 +12,12 @@
     </div>
 
     <template v-else>
-        <ErrorAlert :errorMessage="'Carrelo vuoto'"></ErrorAlert>
-        <router-link to="/" class="btn btn-lg btn-warning text-info">Inizia lo shopping</router-link>
+        <div class="row justify-content-center">
+            <div class="col-6">
+                <ErrorAlert :errorMessage="'Carrelo vuoto'" class="mb-5"></ErrorAlert>
+            </div>
+        </div>
+        <router-link to="/" class="btn btn-lg" :class="{'btn-dark': theme, 'btn-light': !theme, 'text-dark': !theme, 'text-light': theme}">Inizia lo shopping</router-link>
     </template>
 
 </div>
@@ -69,6 +74,13 @@ export default {
             });
             return this.totalPrice.toFixed(2);
         },
+        returnTheme() {
+            let theme = this.$store.state.themeLight ? this.$store.state.light : this.$store.state.dark;
+            return theme;
+        },
+        theme() {
+            return this.$store.state.themeLight;
+        }
     },
     created: function () {
         this.getCart();

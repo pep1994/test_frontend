@@ -1,5 +1,5 @@
 <template>
-<table v-if="cart.length > 0" class="table">
+<table v-if="cart.length > 0" class="table" :class="{'table-dark': !theme}">
     <thead>
         <tr>
             <th scope="col">Immagine</th>
@@ -108,8 +108,13 @@ export default {
             );
             this.$store.commit("removeFromCart", id);
             this.$store.commit("setCountCart");
-        },
+        }
     },
+    computed: {
+        theme() {
+            return this.$store.state.themeLight;
+        }
+    }
 };
 </script>
 

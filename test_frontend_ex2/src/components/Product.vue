@@ -4,7 +4,7 @@
     <MessageAddToCart :show="show" :nameProduct="showNameProduct"></MessageAddToCart>
 
     <div v-for="product in products" :key="product.id" class="col-lg-4 col-md-6 mt-4 mb-2 d-flex justify-content-center">
-        <div class="card" style="width: 18rem;">
+        <div class="card" :style="{width: '18rem', color: returnTheme.syntax}" :class="{'bg-dark': !theme}">
             <img class="card-img-top" :src="product.image" :alt="product.name">
             <div class="card-body">
                 <h5 class="card-title">{{product.name}}</h5>
@@ -84,6 +84,13 @@ export default {
     computed: {
         showNameProduct() {
             return this.nameProduct;
+        },
+        returnTheme() {
+            let theme = this.$store.state.themeLight ? this.$store.state.light : this.$store.state.dark;
+            return theme;
+        },
+        theme() {
+            return this.$store.state.themeLight;
         }
     }
 }

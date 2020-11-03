@@ -2,16 +2,16 @@
 <div role="dialog" :style="styleModal">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header" :class="{'bg-dark': !theme}">
                 <h5 class="modal-title">Attenzione</h5>
-                <button @click="showModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button :style="{color: returnTheme.syntax}" @click="showModal" type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body" :class="{'bg-dark': !theme}">
                 <p>Vuoi davvero svuotare il carrello?</p>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" :class="{'bg-dark': !theme}">
                 <button @click="emptyCart" type="button" class="btn btn-danger" data-dismiss="modal">
                     Svuota
                 </button>
@@ -59,5 +59,14 @@ export default {
             this.$store.commit("setCountCart");
         },
     },
+    computed: {
+        theme() {
+            return this.$store.state.themeLight;
+        },
+        returnTheme() {
+            let theme = this.$store.state.themeLight ? this.$store.state.light : this.$store.state.dark;
+            return theme;
+        }
+    }
 };
 </script>
