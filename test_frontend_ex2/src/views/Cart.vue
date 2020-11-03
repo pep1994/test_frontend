@@ -1,5 +1,5 @@
 <template>
-<div class="cart py-5" :style="{backgroundColor: returnTheme.bg, color: returnTheme.syntax, minHeight: '100vh'}">
+<div class="cart p-5" :style="{backgroundColor: returnTheme.bg, color: returnTheme.syntax, minHeight: '100vh'}">
 
     <h2 class="mb-5">Riepilogo carrello</h2>
     <Modal @resetPriceAndCart="reset" :showModal="showModal" :styleModal="styleModal"></Modal>

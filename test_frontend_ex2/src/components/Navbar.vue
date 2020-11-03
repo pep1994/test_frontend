@@ -1,8 +1,8 @@
 <template>
 <nav class="navbar navbar-expand-lg navbar-dark bg-light fixed-top" :class="{ 'bg-dark': !theme }">
     <router-link class="navbar-brand" to="/">Test_Frontend</router-link>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+    <button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon" :style="{backgroundColor: '#42b983'}"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto p-2">
@@ -76,7 +76,7 @@ i {
     .link-cart {
         padding: 12px;
         .count-cart {
-            top: 78px;
+            top: 110px;
             right: 21px;
         }
     }
