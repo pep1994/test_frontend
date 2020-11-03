@@ -1,5 +1,5 @@
 <template>
-<div class="card mb-3 mt-3 bg-light">
+<div class="card py-4" :style="{backgroundColor: returnTheme.bg, color: returnTheme.syntax}">
 
     <MessageAddToCart :show="show" :nameProduct="showNameProduct"></MessageAddToCart>
 
@@ -75,6 +75,13 @@ export default {
     computed: {
         showNameProduct() {
             return this.nameProduct;
+        },
+        theme() {
+            return this.$store.state.themeLight;
+        },
+        returnTheme() {
+            let theme = this.$store.state.themeLight ? this.$store.state.light : this.$store.state.dark;
+            return theme;
         }
     }
 }

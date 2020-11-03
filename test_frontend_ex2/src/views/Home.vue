@@ -43,7 +43,7 @@ export default {
             error: false,
             loading: false,
             showPromo: false,
-            errorMessage: "",
+            errorMessage: "Errore",
             totalPages: 0,
             currentPage: 0,
             limit: 6,

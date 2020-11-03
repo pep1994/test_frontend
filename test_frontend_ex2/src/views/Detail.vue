@@ -36,6 +36,10 @@ export default {
     computed: {
         printErrorMessage() {
             return this.errorMessage;
+        },
+        returnTheme() {
+            let theme = this.$store.state.themeLight ? this.$store.state.light : this.$store.state.dark;
+            return theme;
         }
     },
     created: function () {

@@ -7,13 +7,12 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     products: [],
-    cart: [],
-    countCart: "",
+    cart: localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [],
+    countCart: localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')).reduce((acc, currentVal) => acc + currentVal.quantityInCart, 0) : 0,
     themeLight: true,
     light: {
       syntax: '#555',
       bg: '#eee'
-
     },
     dark: {
       syntax: '#ddd',
@@ -28,17 +27,20 @@ export default new Vuex.Store({
       if (state.cart.some(product => product.id == payload.id)) {
         let product = state.cart.find(product => product.id == payload.id);
         product.quantityInCart = payload.quantityInCart;
+        localStorage.setItem('cart', JSON.stringify(state.cart));
       } else {
         state.cart = [...state.cart, payload];
-
+        localStorage.setItem('cart', JSON.stringify(state.cart));
       }
     },
     addToCartPromo: (state, payload) => {
       if (state.cart.some(product => product.id == payload.id)) {
         let product = state.cart.find(product => product.id == payload.id);
         product.quantityInCart = payload.quantityInCart;
+        localStorage.setItem('cart', JSON.stringify(state.cart));
       } else {
         state.cart = [...state.cart, payload];
+        localStorage.setItem('cart', JSON.stringify(state.cart));
       }
     },
     setCountCart: state => {
@@ -52,6 +54,7 @@ export default new Vuex.Store({
       if (state.cart.some(product => product.id == payload.id)) {
         let product = state.cart.find(product => product.id == payload.id);
         product.quantityInCart = payload.quantityInCart;
+        localStorage.setItem('cart', JSON.stringify(state.cart));
       }
     },
     removeFromCart: (state, payload) => {
@@ -59,10 +62,12 @@ export default new Vuex.Store({
       if (state.products.some(product => product.id == payload)) {
         let product = state.products.find(product => product.id == payload);
         product.quantityInCart = 0;
+        localStorage.setItem('cart', JSON.stringify(state.cart));
       }
     },
     emptyCart: state => {
       state.cart = [];
+      localStorage.removeItem('cart');
       state.products.forEach(product => {
         if (product.quantityInCart > 0) {
           product.quantityInCart = 0;
@@ -81,9 +86,9 @@ export default new Vuex.Store({
                     "setProducts",
                     res.data.map((product) => ({
                         ...product,
-                        quantityInCart: 0
+                        quantityInCart: context.state.cart.some(p => p.id == product.id) ? context.state.cart.find(p => p.id == product.id).quantityInCart : 0
                     }))
-                );
+                );  
             })
             .catch((err) => {
               console.log(err)
